@@ -86,11 +86,13 @@ const defaultWorkspaceHTML = `<!doctype html>
 const defaultCSS = `body {
   margin: 0;
   min-height: 100vh;
-  padding: 4.5rem 2.75rem;
-  background: #f3eadb;
-  color: #050505;
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", sans-serif;
-  font-size: 18px;
+  padding: 4rem 1.5rem;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.72), transparent 30rem),
+    linear-gradient(135deg, #f8f1e6 0%, #f4ecdf 48%, #eee2d1 100%);
+  color: #191714;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", sans-serif;
+  font-size: 17px;
   line-height: 1.62;
 }
 
@@ -108,28 +110,33 @@ sf-tasks {
 }
 
 sf-workspace {
-  max-width: 1180px;
+  width: min(960px, 100%);
   margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: rgba(255, 250, 241, 0.88);
+  border: 1px solid rgba(82, 63, 40, 0.14);
+  border-radius: 32px;
+  box-shadow: 0 28px 80px rgba(83, 61, 34, 0.12);
 }
 
 sf-title {
-  color: #050505;
-  font-family: "SFMono-Regular", "Roboto Mono", "Menlo", monospace;
-  font-size: clamp(3rem, 9vw, 7.5rem);
-  font-weight: 900;
-  letter-spacing: -0.09em;
-  line-height: 0.88;
-  margin-bottom: 2.75rem;
-  text-transform: uppercase;
+  color: #191714;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 850;
+  letter-spacing: -0.075em;
+  line-height: 0.94;
+  margin-bottom: 2rem;
 }
 
 sf-domains,
 sf-repositories,
 sf-proposals,
 sf-tasks {
-  margin-bottom: 2.1rem;
-  padding-top: 1.25rem;
-  border-top: 2px solid #050505;
+  margin-bottom: 1rem;
+  padding: 1.15rem;
+  background: rgba(255, 255, 255, 0.48);
+  border: 1px solid #ded2c0;
+  border-radius: 22px;
 }
 
 sf-domains::before,
@@ -137,13 +144,15 @@ sf-repositories::before,
 sf-proposals::before,
 sf-tasks::before {
   display: block;
-  color: #050505;
-  font-family: "SFMono-Regular", "Roboto Mono", "Menlo", monospace;
-  font-size: clamp(1.55rem, 3vw, 2.35rem);
-  font-weight: 900;
-  letter-spacing: -0.06em;
-  line-height: 1;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid #ded2c0;
+  color: #191714;
+  font-family: "SFMono-Regular", "Roboto Mono", Menlo, monospace;
+  font-size: 0.82rem;
+  font-weight: 760;
+  letter-spacing: 0.1em;
+  line-height: 1.15;
   text-transform: uppercase;
 }
 
@@ -165,16 +174,12 @@ sf-tasks::before {
 
 @media (max-width: 720px) {
   body {
-    padding: 2.5rem 1.2rem;
+    padding: 1rem;
     font-size: 16px;
   }
 
-  sf-domains,
-  sf-repositories,
-  sf-proposals,
-  sf-tasks {
-    margin-bottom: 1.7rem;
-    padding-top: 1rem;
+  sf-workspace {
+    border-radius: 24px;
   }
 }
 `

@@ -1,11 +1,24 @@
+:root {
+  color-scheme: light;
+  --sf-ink: #191714;
+  --sf-muted: #706a61;
+  --sf-line: #ded2c0;
+  --sf-paper: #fffaf1;
+  --sf-paper-soft: #fbf3e6;
+  --sf-bg: #f4ecdf;
+  --sf-accent: #9a6a3a;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
-  padding: 4.5rem 2.75rem;
-  background: #f3eadb;
-  color: #050505;
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", sans-serif;
-  font-size: 18px;
+  padding: 4rem 1.5rem;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.72), transparent 30rem),
+    linear-gradient(135deg, #f8f1e6 0%, var(--sf-bg) 48%, #eee2d1 100%);
+  color: var(--sf-ink);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", sans-serif;
+  font-size: 17px;
   line-height: 1.62;
 }
 
@@ -21,6 +34,7 @@ sf-generated-at,
 sf-generator,
 sf-depth,
 sf-repository-ref,
+sf-name,
 sf-stack,
 sf-languages,
 sf-frameworks,
@@ -36,26 +50,55 @@ sf-file,
 sf-paths,
 sf-path,
 sf-files,
+sf-domains,
+sf-domain,
 sf-domain-dependencies,
 sf-dependency {
   display: block;
 }
 
-sf-codebase-map {
-  max-width: 1180px;
+sf-codebase-map,
+sf-proposal,
+sf-task,
+sf-implementation {
+  width: min(1120px, 100%);
   margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: rgba(255, 250, 241, 0.88);
+  border: 1px solid rgba(82, 63, 40, 0.14);
+  border-radius: 32px;
+  box-shadow: 0 28px 80px rgba(83, 61, 34, 0.12);
+}
+
+sf-codebase-map::before,
+sf-proposal::before,
+sf-task::before,
+sf-implementation::before {
+  display: block;
+  margin-bottom: 0.65rem;
+  color: var(--sf-ink);
+  font-size: clamp(2.75rem, 7vw, 6rem);
+  font-weight: 850;
+  letter-spacing: -0.075em;
+  line-height: 0.94;
 }
 
 sf-codebase-map::before {
   content: "Codebase Map";
+}
+
+sf-codebase-map::after,
+sf-proposal::after,
+sf-task::after,
+sf-implementation::after {
+  content: "SpecForge artifact";
   display: block;
-  margin-bottom: 2.75rem;
-  color: #050505;
-  font-family: "SFMono-Regular", "Roboto Mono", "Menlo", monospace;
-  font-size: clamp(3rem, 9vw, 7.5rem);
-  font-weight: 900;
-  letter-spacing: -0.09em;
-  line-height: 0.88;
+  margin-bottom: 2.25rem;
+  color: var(--sf-muted);
+  font-family: "SFMono-Regular", "Roboto Mono", Menlo, monospace;
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -83,15 +126,19 @@ sf-commands,
 sf-validation,
 sf-risks,
 sf-notes {
-  margin-bottom: 2.1rem;
-  padding-top: 1.25rem;
-  border-top: 2px solid #050505;
+  margin-bottom: 1rem;
+  padding: 1.15rem;
+  background: rgba(255, 255, 255, 0.48);
+  border: 1px solid var(--sf-line);
+  border-radius: 22px;
 }
 
 sf-generated-metadata::before,
+sf-repository-ref::before,
 sf-stack::before,
 sf-entrypoints::before,
 sf-structure::before,
+sf-domains::before,
 sf-domain-dependencies::before,
 sf-goal::before,
 sf-requirements::before,
@@ -107,18 +154,24 @@ sf-commands::before,
 sf-validation::before,
 sf-risks::before {
   display: block;
-  margin-bottom: 1rem;
-  color: #050505;
-  font-family: "SFMono-Regular", "Roboto Mono", "Menlo", monospace;
-  font-size: clamp(1.55rem, 3vw, 2.35rem);
-  font-weight: 900;
-  letter-spacing: -0.06em;
-  line-height: 1;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--sf-line);
+  color: var(--sf-ink);
+  font-family: "SFMono-Regular", "Roboto Mono", Menlo, monospace;
+  font-size: 0.82rem;
+  font-weight: 760;
+  letter-spacing: 0.1em;
+  line-height: 1.15;
   text-transform: uppercase;
 }
 
 sf-generated-metadata::before {
-  content: "Generated Metadata";
+  content: "Generated metadata";
+}
+
+sf-repository-ref::before {
+  content: "Repository";
 }
 
 sf-stack::before {
@@ -133,17 +186,23 @@ sf-structure::before {
   content: "Structure";
 }
 
+sf-domains::before {
+  content: "Domains";
+}
+
 sf-domain-dependencies::before {
-  content: "Domain Dependencies";
+  content: "Domain dependencies";
 }
 
-sf-directory {
-  margin-left: 1rem;
-  margin-top: 0.25rem;
-}
-
-sf-file,
+sf-generated-at,
+sf-generator,
+sf-depth,
+sf-language,
+sf-framework,
+sf-package-manager,
+sf-entrypoint,
 sf-path,
+sf-file,
 sf-dependency,
 sf-requirement,
 sf-constraint,
@@ -152,9 +211,78 @@ sf-step,
 sf-check,
 sf-risk,
 sf-item,
-sf-command {
-  margin-bottom: 0.65rem;
-  color: #1f1f1f;
+sf-command,
+sf-name {
+  margin-bottom: 0.45rem;
+  color: #2c2924;
+}
+
+sf-generated-metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+sf-generated-metadata::before {
+  flex: 0 0 100%;
+}
+
+sf-generated-at,
+sf-generator,
+sf-depth,
+sf-language,
+sf-framework,
+sf-package-manager,
+sf-entrypoint,
+sf-path {
+  width: fit-content;
+  padding: 0.32rem 0.62rem;
+  background: var(--sf-paper-soft);
+  border: 1px solid rgba(154, 106, 58, 0.22);
+  border-radius: 999px;
+  color: #453b30;
+  font-size: 0.92rem;
+  line-height: 1.25;
+}
+
+sf-directory {
+  margin-top: 0.35rem;
+  padding-left: 0.9rem;
+  border-left: 1px solid var(--sf-line);
+}
+
+sf-directory::before {
+  content: attr(path);
+  display: block;
+  margin: 0.25rem 0 0.45rem;
+  color: var(--sf-accent);
+  font-family: "SFMono-Regular", "Roboto Mono", Menlo, monospace;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+sf-file {
+  position: relative;
+  padding-left: 1rem;
+  font-family: "SFMono-Regular", "Roboto Mono", Menlo, monospace;
+  font-size: 0.92rem;
+}
+
+sf-file::before {
+  content: "";
+  position: absolute;
+  left: 0.25rem;
+  top: 0.72em;
+  width: 0.28rem;
+  height: 0.28rem;
+  background: var(--sf-accent);
+  border-radius: 50%;
+}
+
+sf-domain {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--sf-line);
 }
 
 /* Shared Artifact Styles */
@@ -194,27 +322,6 @@ sf-item {
   display: block;
 }
 
-sf-proposal,
-sf-task,
-sf-implementation {
-  max-width: 1180px;
-  margin: 0 auto;
-}
-
-sf-proposal::before,
-sf-task::before,
-sf-implementation::before {
-  display: block;
-  margin-bottom: 2.75rem;
-  color: #050505;
-  font-family: "SFMono-Regular", "Roboto Mono", "Menlo", monospace;
-  font-size: clamp(3rem, 9vw, 7.5rem);
-  font-weight: 900;
-  letter-spacing: -0.09em;
-  line-height: 0.88;
-  text-transform: uppercase;
-}
-
 sf-proposal::before {
   content: "Proposal";
 }
@@ -231,13 +338,13 @@ sf-proposal > sf-title,
 sf-task > sf-title,
 sf-implementation > sf-title {
   display: block;
-  max-width: 900px;
-  margin-bottom: 2.4rem;
-  color: #050505;
-  font-size: clamp(1.8rem, 4vw, 3.25rem);
-  font-weight: 700;
+  max-width: 760px;
+  margin-bottom: 2rem;
+  color: var(--sf-ink);
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  font-weight: 720;
   letter-spacing: -0.045em;
-  line-height: 1.05;
+  line-height: 1.08;
 }
 
 sf-goal::before {
@@ -253,11 +360,11 @@ sf-constraints::before {
 }
 
 sf-acceptance-criteria::before {
-  content: "Acceptance Criteria";
+  content: "Acceptance criteria";
 }
 
 sf-out-of-scope::before {
-  content: "Out of Scope";
+  content: "Out of scope";
 }
 
 sf-purpose::before {
@@ -265,7 +372,7 @@ sf-purpose::before {
 }
 
 sf-expected-output::before {
-  content: "Expected Output";
+  content: "Expected output";
 }
 
 sf-summary::before {
@@ -273,7 +380,7 @@ sf-summary::before {
 }
 
 sf-change-plan::before {
-  content: "Change Plan";
+  content: "Change plan";
 }
 
 sf-files::before {
@@ -292,43 +399,46 @@ sf-risks::before {
   content: "Risks";
 }
 
-@media (min-width: 900px) {
+@media (min-width: 880px) {
+  sf-codebase-map,
   sf-proposal,
   sf-task,
-  sf-implementation,
-  sf-codebase-map {
+  sf-implementation {
     display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
-    column-gap: 4rem;
-    align-items: start;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 1rem;
   }
 
-  sf-proposal::before,
-  sf-task::before,
-  sf-implementation::before,
   sf-codebase-map::before,
+  sf-codebase-map::after,
+  sf-proposal::before,
+  sf-proposal::after,
+  sf-task::before,
+  sf-task::after,
+  sf-implementation::before,
+  sf-implementation::after,
   sf-proposal > sf-title,
   sf-task > sf-title,
   sf-implementation > sf-title {
     grid-column: 1 / -1;
   }
-}
-
-@media (max-width: 720px) {
-  body {
-    padding: 2.5rem 1.2rem;
-    font-size: 16px;
-  }
 
   sf-generated-metadata,
-  sf-repository-ref,
   sf-stack,
-  sf-entrypoints,
   sf-structure,
-  sf-domains,
-  sf-domain-dependencies,
   sf-goal,
   sf-requirements,
+  sf-summary,
+  sf-change-plan,
+  sf-files,
+  sf-validation {
+    grid-column: span 7;
+  }
+
+  sf-repository-ref,
+  sf-entrypoints,
+  sf-domains,
+  sf-domain-dependencies,
   sf-constraints,
   sf-acceptance-criteria,
   sf-status,
@@ -337,14 +447,23 @@ sf-risks::before {
   sf-dependencies,
   sf-expected-output,
   sf-validation-notes,
-  sf-summary,
-  sf-change-plan,
-  sf-files,
   sf-commands,
-  sf-validation,
   sf-risks,
   sf-notes {
-    margin-bottom: 1.7rem;
-    padding-top: 1rem;
+    grid-column: span 5;
+  }
+}
+
+@media (max-width: 720px) {
+  body {
+    padding: 1rem;
+    font-size: 16px;
+  }
+
+  sf-codebase-map,
+  sf-proposal,
+  sf-task,
+  sf-implementation {
+    border-radius: 24px;
   }
 }
