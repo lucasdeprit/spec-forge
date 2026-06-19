@@ -1,66 +1,53 @@
-/* SpecForge global styles */
 
-:root {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #1f2937;
-  background: #f9fafb;
-}
 
-body {
-  margin: 0;
-  padding: 2rem;
-}
+/* Codebase Map */
 
-sf-workspace,
-sf-domains,
-sf-domain,
-sf-repositories,
-sf-repository,
-sf-name,
-sf-description,
-sf-role {
+sf-codebase-map,
+sf-generated-metadata,
+sf-generated-at,
+sf-generator,
+sf-depth,
+sf-repository-ref,
+sf-stack,
+sf-languages,
+sf-frameworks,
+sf-package-managers,
+sf-language,
+sf-framework,
+sf-package-manager,
+sf-entrypoints,
+sf-entrypoint,
+sf-structure,
+sf-directory,
+sf-file,
+sf-paths,
+sf-path,
+sf-files,
+sf-domain-dependencies,
+sf-dependency {
   display: block;
 }
 
-sf-workspace {
+sf-codebase-map {
   max-width: 960px;
   margin: 0 auto;
 }
 
-sf-workspace > sf-name {
+sf-codebase-map::before {
+  content: "Codebase Map";
+  display: block;
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
-sf-description {
-  color: #4b5563;
-  margin-bottom: 1.5rem;
-}
-
+sf-generated-metadata,
+sf-repository-ref,
+sf-stack,
+sf-entrypoints,
+sf-structure,
 sf-domains,
-sf-repositories {
-  margin-top: 2rem;
-}
-
-sf-domains::before {
-  content: "Domains";
-  display: block;
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-sf-repositories::before {
-  content: "Repositories";
-  display: block;
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-sf-domain,
-sf-repository {
+sf-domain-dependencies {
   background: white;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
@@ -68,8 +55,258 @@ sf-repository {
   margin-bottom: 1rem;
 }
 
-sf-domain > sf-name,
-sf-repository > sf-name {
+sf-generated-metadata::before {
+  content: "Generated Metadata";
+  display: block;
   font-weight: 700;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+sf-stack::before {
+  content: "Stack";
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+sf-entrypoints::before {
+  content: "Entrypoints";
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+sf-structure::before {
+  content: "Structure";
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+sf-domain-dependencies::before {
+  content: "Domain Dependencies";
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+sf-directory {
+  margin-left: 1rem;
+  margin-top: 0.25rem;
+}
+
+sf-file,
+sf-path {
+  margin-left: 1rem;
+  color: #4b5563;
+}
+
+sf-dependency {
+  color: #4b5563;
+}
+
+
+/* Shared Artifact Styles */
+
+sf-proposal,
+sf-task,
+sf-implementation,
+sf-title,
+sf-goal,
+sf-requirements,
+sf-requirement,
+sf-constraints,
+sf-constraint,
+sf-acceptance-criteria,
+sf-criterion,
+sf-status,
+sf-domain-ref,
+sf-proposal-ref,
+sf-task-ref,
+sf-codebase-map-ref,
+sf-out-of-scope,
+sf-purpose,
+sf-dependencies,
+sf-expected-output,
+sf-validation-notes,
+sf-summary,
+sf-change-plan,
+sf-step,
+sf-commands,
+sf-command,
+sf-validation,
+sf-check,
+sf-risks,
+sf-risk,
+sf-notes,
+sf-item {
+  display: block;
+}
+
+sf-proposal,
+sf-task,
+sf-implementation {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+sf-proposal::before {
+  content: "Proposal";
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+sf-task::before {
+  content: "Task";
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+sf-implementation::before {
+  content: "Implementation";
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+sf-proposal > sf-title,
+sf-task > sf-title,
+sf-implementation > sf-title {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+sf-goal,
+sf-requirements,
+sf-constraints,
+sf-acceptance-criteria,
+sf-status,
+sf-out-of-scope,
+sf-purpose,
+sf-dependencies,
+sf-expected-output,
+sf-validation-notes,
+sf-summary,
+sf-change-plan,
+sf-files,
+sf-commands,
+sf-validation,
+sf-risks,
+sf-notes,
+sf-domains {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+sf-goal::before {
+  content: "Goal";
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+sf-requirements::before {
+  content: "Requirements";
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+sf-constraints::before {
+  content: "Constraints";
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+sf-acceptance-criteria::before {
+  content: "Acceptance Criteria";
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+sf-out-of-scope::before {
+  content: "Out of Scope";
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+sf-purpose::before {
+  content: "Purpose";
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+sf-expected-output::before {
+  content: "Expected Output";
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+sf-summary::before {
+  content: "Summary";
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+sf-change-plan::before {
+  content: "Change Plan";
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+sf-files::before {
+  content: "Files";
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+sf-commands::before {
+  content: "Commands";
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+sf-validation::before {
+  content: "Validation";
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+sf-risks::before {
+  content: "Risks";
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+sf-requirement,
+sf-constraint,
+sf-criterion,
+sf-step,
+sf-check,
+sf-risk,
+sf-item,
+sf-command {
+  margin-bottom: 0.5rem;
+  color: #4b5563;
 }

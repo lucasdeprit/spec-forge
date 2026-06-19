@@ -192,3 +192,14 @@ Rules:
 - no persistent duplicated JSON
 - no mandatory MDX
 - no mandatory React
+
+
+## Artifact Documents
+
+The v0.1 semantic HTML documents are:
+
+- workspace.html
+- codebase-map.html
+- proposal.html
+- task.html
+- implementation.html

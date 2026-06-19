@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SpecForge Proposal</title>
+  <link rel="stylesheet" href="../assets/specforge.css">
+</head>
+<body>
+
+<sf-proposal
+  id="PROP-20260619-A7K3-passkey-login"
+  status="draft"
+  version="0.1">
+
+  <sf-title>
+    Login with Passkeys
+  </sf-title>
+
+  <sf-description>
+    Allow users to sign in with passkeys while keeping the existing login flow available.
+  </sf-description>
+
+  <sf-goal>
+    Reduce authentication friction without breaking the current login experience.
+  </sf-goal>
+
+  <sf-domains>
+    <sf-domain-ref ref="authentication"></sf-domain-ref>
+    <sf-domain-ref ref="profile"></sf-domain-ref>
+  </sf-domains>
+
+  <sf-requirements>
+    <sf-requirement id="REQ-001">
+      Users can sign in using passkeys.
+    </sf-requirement>
+
+    <sf-requirement id="REQ-002">
+      Users can still sign in using the existing login method.
+    </sf-requirement>
+
+    <sf-requirement id="REQ-003">
+      Users without a configured passkey are not blocked from accessing the application.
+    </sf-requirement>
+  </sf-requirements>
+
+  <sf-constraints>
+    <sf-constraint id="CON-001">
+      The existing login flow must not be removed.
+    </sf-constraint>
+
+    <sf-constraint id="CON-002">
+      The change must stay within the authentication experience.
+    </sf-constraint>
+  </sf-constraints>
+
+  <sf-out-of-scope>
+    <sf-item>
+      Social login.
+    </sf-item>
+
+    <sf-item>
+      Full login screen redesign.
+    </sf-item>
+  </sf-out-of-scope>
+
+  <sf-acceptance-criteria>
+    <sf-criterion id="AC-001">
+      Given a user with a configured passkey, when the user signs in, then authentication succeeds with the passkey.
+    </sf-criterion>
+
+    <sf-criterion id="AC-002">
+      Given a user without a configured passkey, when the user signs in, then the existing login method remains available.
+    </sf-criterion>
+
+    <sf-criterion id="AC-003">
+      The existing login flow continues to work after the change.
+    </sf-criterion>
+  </sf-acceptance-criteria>
+
+  <sf-status>
+    draft
+  </sf-status>
+
+</sf-proposal>
+
+</body>
+</html>

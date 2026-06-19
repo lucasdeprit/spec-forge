@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SpecForge Implementation</title>
+  <link rel="stylesheet" href="../assets/specforge.css">
+</head>
+<body>
+
+<sf-implementation
+  id="IMPL-20260619-X9P1-backend-authentication-flow"
+  task="TASK-20260619-B2Q8-define-authentication-flow"
+  repo="backend-api"
+  status="draft"
+  version="0.1">
+
+  <sf-title>
+    Apply authentication flow to Backend API
+  </sf-title>
+
+  <sf-task-ref ref="TASK-20260619-B2Q8-define-authentication-flow"></sf-task-ref>
+
+  <sf-repository-ref ref="backend-api"></sf-repository-ref>
+
+  <sf-codebase-map-ref repo="backend-api" path="../repos/backend-api/codebase-map.html"></sf-codebase-map-ref>
+
+  <sf-summary>
+    Implement the backend-side changes required to support the authentication flow described by the Task.
+  </sf-summary>
+
+  <sf-change-plan>
+    <sf-step id="STEP-001">
+      Review the Authentication domain in the repository Codebase Map.
+    </sf-step>
+
+    <sf-step id="STEP-002">
+      Identify the current sign-in endpoint and session creation flow.
+    </sf-step>
+
+    <sf-step id="STEP-003">
+      Add or adapt backend behavior required by passkey authentication.
+    </sf-step>
+
+    <sf-step id="STEP-004">
+      Preserve the existing login behavior.
+    </sf-step>
+  </sf-change-plan>
+
+  <sf-files>
+    <sf-file path="internal/auth/handler.go">
+      Review and adapt authentication request handling.
+    </sf-file>
+
+    <sf-file path="internal/auth/service.go">
+      Add or adapt authentication flow logic.
+    </sf-file>
+
+    <sf-file path="internal/auth/repository.go">
+      Review whether persistence changes are required.
+    </sf-file>
+  </sf-files>
+
+  <sf-commands>
+    <sf-command>
+      go test ./...
+    </sf-command>
+  </sf-commands>
+
+  <sf-validation>
+    <sf-check id="CHECK-001">
+      Existing login tests still pass.
+    </sf-check>
+
+    <sf-check id="CHECK-002">
+      New passkey authentication behavior is covered by tests.
+    </sf-check>
+  </sf-validation>
+
+  <sf-risks>
+    <sf-risk>
+      The current authentication flow may be coupled to password-based login assumptions.
+    </sf-risk>
+  </sf-risks>
+
+</sf-implementation>
+
+</body>
+</html>

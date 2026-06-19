@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SpecForge Codebase Map</title>
+  <link rel="stylesheet" href="../assets/specforge.css">
+</head>
+<body>
+
+<sf-codebase-map
+  workspace="workspace-example"
+  repo="backend-api"
+  version="0.1">
+
+  <sf-generated-metadata>
+    <sf-generated-at>2026-06-19T00:00:00Z</sf-generated-at>
+    <sf-generator>specforge</sf-generator>
+    <sf-depth>3</sf-depth>
+  </sf-generated-metadata>
+
+  <sf-repository-ref id="backend-api" path="../backend-api">
+    <sf-name>Backend API</sf-name>
+  </sf-repository-ref>
+
+  <sf-stack>
+    <sf-languages>
+      <sf-language>Go</sf-language>
+    </sf-languages>
+
+    <sf-frameworks>
+      <sf-framework>Gin</sf-framework>
+    </sf-frameworks>
+
+    <sf-package-managers>
+      <sf-package-manager>Go Modules</sf-package-manager>
+    </sf-package-managers>
+  </sf-stack>
+
+  <sf-entrypoints>
+    <sf-entrypoint path="cmd/api/main.go"></sf-entrypoint>
+  </sf-entrypoints>
+
+  <sf-structure>
+    <sf-directory path="cmd">
+      <sf-file>api/main.go</sf-file>
+    </sf-directory>
+
+    <sf-directory path="internal">
+      <sf-directory path="internal/auth">
+        <sf-file>handler.go</sf-file>
+        <sf-file>service.go</sf-file>
+        <sf-file>repository.go</sf-file>
+      </sf-directory>
+
+      <sf-directory path="internal/profile">
+        <sf-file>handler.go</sf-file>
+        <sf-file>service.go</sf-file>
+      </sf-directory>
+
+      <sf-directory path="internal/payments">
+        <sf-file>handler.go</sf-file>
+        <sf-file>service.go</sf-file>
+      </sf-directory>
+    </sf-directory>
+  </sf-structure>
+
+  <sf-domains>
+
+    <sf-domain ref="authentication" confidence="high">
+      <sf-paths>
+        <sf-path>internal/auth</sf-path>
+      </sf-paths>
+
+      <sf-files>
+        <sf-file>handler.go</sf-file>
+        <sf-file>service.go</sf-file>
+        <sf-file>repository.go</sf-file>
+      </sf-files>
+    </sf-domain>
+
+    <sf-domain ref="profile" confidence="medium">
+      <sf-paths>
+        <sf-path>internal/profile</sf-path>
+      </sf-paths>
+
+      <sf-files>
+        <sf-file>handler.go</sf-file>
+        <sf-file>service.go</sf-file>
+      </sf-files>
+    </sf-domain>
+
+    <sf-domain ref="payments" confidence="medium">
+      <sf-paths>
+        <sf-path>internal/payments</sf-path>
+      </sf-paths>
+
+      <sf-files>
+        <sf-file>handler.go</sf-file>
+        <sf-file>service.go</sf-file>
+      </sf-files>
+    </sf-domain>
+
+  </sf-domains>
+
+  <sf-domain-dependencies>
+    <sf-dependency from="profile" to="authentication" confidence="medium"></sf-dependency>
+    <sf-dependency from="payments" to="authentication" confidence="medium"></sf-dependency>
+  </sf-domain-dependencies>
+
+</sf-codebase-map>
+
+</body>
+</html>

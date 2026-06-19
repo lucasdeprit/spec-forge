@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SpecForge Task</title>
+  <link rel="stylesheet" href="../assets/specforge.css">
+</head>
+<body>
+
+<sf-task
+  id="TASK-20260619-B2Q8-define-authentication-flow"
+  proposal="PROP-20260619-A7K3-passkey-login"
+  status="todo"
+  version="0.1">
+
+  <sf-title>
+    Define authentication flow
+  </sf-title>
+
+  <sf-proposal-ref ref="PROP-20260619-A7K3-passkey-login"></sf-proposal-ref>
+
+  <sf-description>
+    Define the logical authentication flow required to support passkey login while preserving the existing login method.
+  </sf-description>
+
+  <sf-purpose>
+    Establish the expected user journey, fallback behavior and validation path before any repository-specific implementation is planned.
+  </sf-purpose>
+
+  <sf-domains>
+    <sf-domain-ref ref="authentication"></sf-domain-ref>
+    <sf-domain-ref ref="profile"></sf-domain-ref>
+  </sf-domains>
+
+  <sf-dependencies>
+  </sf-dependencies>
+
+  <sf-expected-output>
+    <sf-item>
+      A clear flow for users with configured passkeys.
+    </sf-item>
+
+    <sf-item>
+      A clear fallback flow for users without configured passkeys.
+    </sf-item>
+
+    <sf-item>
+      A validation approach for confirming both flows work.
+    </sf-item>
+  </sf-expected-output>
+
+  <sf-validation-notes>
+    The task is complete when the flow is clear enough to generate repository-specific Implementations.
+  </sf-validation-notes>
+
+  <sf-status>
+    todo
+  </sf-status>
+
+</sf-task>
+
+</body>
+</html>
