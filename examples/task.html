@@ -20,7 +20,7 @@
   <sf-proposal-ref ref="PROP-20260619-A7K3-passkey-login"></sf-proposal-ref>
 
   <sf-description>
-    Define the logical authentication flow required to support passkey login while preserving the existing login method.
+    Define the logical authentication flow required to support passkey login while preserving the existing login method, recovery behavior and security audit trail.
   </sf-description>
 
   <sf-purpose>
@@ -30,9 +30,17 @@
   <sf-domains>
     <sf-domain-ref ref="authentication"></sf-domain-ref>
     <sf-domain-ref ref="profile"></sf-domain-ref>
+    <sf-domain-ref ref="notifications"></sf-domain-ref>
   </sf-domains>
 
   <sf-dependencies>
+    <sf-item>
+      Confirm current session creation and refresh-token rules in Backend API.
+    </sf-item>
+
+    <sf-item>
+      Review notification templates used for security-sensitive account changes.
+    </sf-item>
   </sf-dependencies>
 
   <sf-expected-output>
@@ -47,10 +55,14 @@
     <sf-item>
       A validation approach for confirming both flows work.
     </sf-item>
+
+    <sf-item>
+      A failure matrix covering unsupported browsers, lost devices and expired passkey challenges.
+    </sf-item>
   </sf-expected-output>
 
   <sf-validation-notes>
-    The task is complete when the flow is clear enough to generate repository-specific Implementations.
+    The task is complete when the flow is clear enough to generate repository-specific Implementations and when edge cases can be validated without reading the application code first.
   </sf-validation-notes>
 
   <sf-status>

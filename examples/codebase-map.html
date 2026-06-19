@@ -29,6 +29,8 @@
 
     <sf-frameworks>
       <sf-framework>Gin</sf-framework>
+      <sf-framework>PostgreSQL</sf-framework>
+      <sf-framework>Redis</sf-framework>
     </sf-frameworks>
 
     <sf-package-managers>
@@ -38,6 +40,7 @@
 
   <sf-entrypoints>
     <sf-entrypoint path="cmd/api/main.go"></sf-entrypoint>
+    <sf-entrypoint path="cmd/worker/main.go"></sf-entrypoint>
   </sf-entrypoints>
 
   <sf-structure>
@@ -55,11 +58,36 @@
       <sf-directory path="internal/profile">
         <sf-file>handler.go</sf-file>
         <sf-file>service.go</sf-file>
+        <sf-file>preferences.go</sf-file>
       </sf-directory>
 
       <sf-directory path="internal/payments">
         <sf-file>handler.go</sf-file>
         <sf-file>service.go</sf-file>
+        <sf-file>webhook.go</sf-file>
+      </sf-directory>
+
+      <sf-directory path="internal/orders">
+        <sf-file>handler.go</sf-file>
+        <sf-file>service.go</sf-file>
+        <sf-file>fulfillment.go</sf-file>
+      </sf-directory>
+
+      <sf-directory path="internal/notifications">
+        <sf-file>worker.go</sf-file>
+        <sf-file>templates.go</sf-file>
+      </sf-directory>
+    </sf-directory>
+
+    <sf-directory path="pkg">
+      <sf-directory path="pkg/database">
+        <sf-file>postgres.go</sf-file>
+        <sf-file>migrations.go</sf-file>
+      </sf-directory>
+
+      <sf-directory path="pkg/observability">
+        <sf-file>logger.go</sf-file>
+        <sf-file>metrics.go</sf-file>
       </sf-directory>
     </sf-directory>
   </sf-structure>
@@ -100,11 +128,36 @@
       </sf-files>
     </sf-domain>
 
+    <sf-domain ref="orders" confidence="medium">
+      <sf-paths>
+        <sf-path>internal/orders</sf-path>
+      </sf-paths>
+
+      <sf-files>
+        <sf-file>handler.go</sf-file>
+        <sf-file>service.go</sf-file>
+        <sf-file>fulfillment.go</sf-file>
+      </sf-files>
+    </sf-domain>
+
+    <sf-domain ref="notifications" confidence="low">
+      <sf-paths>
+        <sf-path>internal/notifications</sf-path>
+      </sf-paths>
+
+      <sf-files>
+        <sf-file>worker.go</sf-file>
+        <sf-file>templates.go</sf-file>
+      </sf-files>
+    </sf-domain>
+
   </sf-domains>
 
   <sf-domain-dependencies>
     <sf-dependency from="profile" to="authentication" confidence="medium"></sf-dependency>
     <sf-dependency from="payments" to="authentication" confidence="medium"></sf-dependency>
+    <sf-dependency from="orders" to="payments" confidence="medium"></sf-dependency>
+    <sf-dependency from="notifications" to="orders" confidence="low"></sf-dependency>
   </sf-domain-dependencies>
 
 </sf-codebase-map>

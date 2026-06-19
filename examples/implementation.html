@@ -25,7 +25,7 @@
   <sf-codebase-map-ref repo="backend-api" path="../repos/backend-api/codebase-map.html"></sf-codebase-map-ref>
 
   <sf-summary>
-    Implement the backend-side changes required to support the authentication flow described by the Task.
+    Implement the backend-side changes required to support the authentication flow described by the Task, including challenge generation, fallback behavior, audit logging and regression coverage for the existing password login path.
   </sf-summary>
 
   <sf-change-plan>
@@ -44,6 +44,14 @@
     <sf-step id="STEP-004">
       Preserve the existing login behavior.
     </sf-step>
+
+    <sf-step id="STEP-005">
+      Emit audit events for passkey success, passkey failure and fallback authentication.
+    </sf-step>
+
+    <sf-step id="STEP-006">
+      Update security notification behavior for newly registered passkeys.
+    </sf-step>
   </sf-change-plan>
 
   <sf-files>
@@ -58,11 +66,23 @@
     <sf-file path="internal/auth/repository.go">
       Review whether persistence changes are required.
     </sf-file>
+
+    <sf-file path="internal/profile/preferences.go">
+      Read user security preferences used to determine passkey availability.
+    </sf-file>
+
+    <sf-file path="internal/notifications/worker.go">
+      Queue security notification events when a passkey is added or used as fallback recovery.
+    </sf-file>
   </sf-files>
 
   <sf-commands>
     <sf-command>
       go test ./...
+    </sf-command>
+
+    <sf-command>
+      go test ./internal/auth -run Passkey
     </sf-command>
   </sf-commands>
 
@@ -74,11 +94,19 @@
     <sf-check id="CHECK-002">
       New passkey authentication behavior is covered by tests.
     </sf-check>
+
+    <sf-check id="CHECK-003">
+      Audit events are emitted without leaking credential payloads or challenge secrets.
+    </sf-check>
   </sf-validation>
 
   <sf-risks>
     <sf-risk>
       The current authentication flow may be coupled to password-based login assumptions.
+    </sf-risk>
+
+    <sf-risk>
+      Notification or profile preferences may introduce hidden dependencies outside the authentication domain.
     </sf-risk>
   </sf-risks>
 

@@ -17,16 +17,17 @@
   </sf-title>
 
   <sf-description>
-    Allow users to sign in with passkeys while keeping the existing login flow available.
+    Allow users to sign in with passkeys while keeping the existing login flow available for password users, support teams and older devices.
   </sf-description>
 
   <sf-goal>
-    Reduce authentication friction without breaking the current login experience.
+    Reduce authentication friction for returning users, improve account security and preserve the current operational support path for password-based recovery.
   </sf-goal>
 
   <sf-domains>
     <sf-domain-ref ref="authentication"></sf-domain-ref>
     <sf-domain-ref ref="profile"></sf-domain-ref>
+    <sf-domain-ref ref="notifications"></sf-domain-ref>
   </sf-domains>
 
   <sf-requirements>
@@ -41,6 +42,14 @@
     <sf-requirement id="REQ-003">
       Users without a configured passkey are not blocked from accessing the application.
     </sf-requirement>
+
+    <sf-requirement id="REQ-004">
+      Security-sensitive events are auditable so support can understand whether a passkey or fallback method was used.
+    </sf-requirement>
+
+    <sf-requirement id="REQ-005">
+      Users can recover access if a device with a registered passkey is lost.
+    </sf-requirement>
   </sf-requirements>
 
   <sf-constraints>
@@ -51,6 +60,10 @@
     <sf-constraint id="CON-002">
       The change must stay within the authentication experience.
     </sf-constraint>
+
+    <sf-constraint id="CON-003">
+      Existing session cookies, refresh token behavior and rate limiting rules must remain compatible with mobile clients.
+    </sf-constraint>
   </sf-constraints>
 
   <sf-out-of-scope>
@@ -60,6 +73,10 @@
 
     <sf-item>
       Full login screen redesign.
+    </sf-item>
+
+    <sf-item>
+      Enterprise SSO and organization-level identity provider configuration.
     </sf-item>
   </sf-out-of-scope>
 
@@ -74,6 +91,10 @@
 
     <sf-criterion id="AC-003">
       The existing login flow continues to work after the change.
+    </sf-criterion>
+
+    <sf-criterion id="AC-004">
+      Failed passkey attempts are logged with enough context for security review without storing sensitive credential material.
     </sf-criterion>
   </sf-acceptance-criteria>
 

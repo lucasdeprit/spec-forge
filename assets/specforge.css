@@ -1,40 +1,55 @@
 :root {
   color-scheme: light;
-  --sf-ink: #191714;
-  --sf-muted: #706a61;
-  --sf-line: #ded2c0;
-  --sf-paper: #fffaf1;
-  --sf-paper-soft: #fbf3e6;
-  --sf-bg: #f4ecdf;
-  --sf-accent: #9a6a3a;
+
+  --sf-ink: #070706;
+  --sf-ink-soft: #28251f;
+  --sf-muted: #70685c;
+  --sf-line: rgba(7, 7, 6, 0.78);
+  --sf-line-soft: rgba(7, 7, 6, 0.16);
+  --sf-line-faint: rgba(7, 7, 6, 0.07);
+  --sf-paper: #f6efe5;
+  --sf-paper-hot: #fffaf0;
+  --sf-lilac: #c8dcc5;
+  --sf-yellow: #f1c76b;
+  --sf-sage: #c8dcc5;
+  --sf-shadow: 0 30px 90px rgba(45, 33, 20, 0.14);
+  --sf-page: 980px;
+  --sf-gap: 24px;
+  --sf-gap-lg: 32px;
+  --sf-sans: Inter, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", sans-serif;
+  --sf-mono: "SFMono-Regular", "Roboto Mono", Menlo, monospace;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  padding: 4rem 1.5rem;
+  padding: clamp(1rem, 3.4vw, 3rem);
   background:
-    radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.72), transparent 30rem),
-    linear-gradient(135deg, #f8f1e6 0%, var(--sf-bg) 48%, #eee2d1 100%);
+    radial-gradient(circle at 16% -18%, rgba(255, 255, 255, 0.92), transparent 32rem),
+    linear-gradient(135deg, #fbf6ee 0%, #ece2d4 100%);
   color: var(--sf-ink);
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", sans-serif;
-  font-size: 17px;
-  line-height: 1.62;
+  font-family: var(--sf-sans);
+  font-size: 18px;
+  line-height: 1.6;
 }
 
-body * {
-  box-sizing: border-box;
-}
-
-/* Codebase Map */
+/* Display */
 
 sf-codebase-map,
+sf-proposal,
+sf-task,
+sf-implementation,
 sf-generated-metadata,
 sf-generated-at,
 sf-generator,
 sf-depth,
 sf-repository-ref,
 sf-name,
+sf-description,
 sf-stack,
 sf-languages,
 sf-frameworks,
@@ -53,243 +68,7 @@ sf-files,
 sf-domains,
 sf-domain,
 sf-domain-dependencies,
-sf-dependency {
-  display: block;
-}
-
-sf-codebase-map,
-sf-proposal,
-sf-task,
-sf-implementation {
-  width: min(1120px, 100%);
-  margin: 0 auto;
-  padding: clamp(1.5rem, 4vw, 3rem);
-  background: rgba(255, 250, 241, 0.88);
-  border: 1px solid rgba(82, 63, 40, 0.14);
-  border-radius: 32px;
-  box-shadow: 0 28px 80px rgba(83, 61, 34, 0.12);
-}
-
-sf-codebase-map::before,
-sf-proposal::before,
-sf-task::before,
-sf-implementation::before {
-  display: block;
-  margin-bottom: 0.65rem;
-  color: var(--sf-ink);
-  font-size: clamp(2.75rem, 7vw, 6rem);
-  font-weight: 850;
-  letter-spacing: -0.075em;
-  line-height: 0.94;
-}
-
-sf-codebase-map::before {
-  content: "Codebase Map";
-}
-
-sf-codebase-map::after,
-sf-proposal::after,
-sf-task::after,
-sf-implementation::after {
-  content: "SpecForge artifact";
-  display: block;
-  margin-bottom: 2.25rem;
-  color: var(--sf-muted);
-  font-family: "SFMono-Regular", "Roboto Mono", Menlo, monospace;
-  font-size: 0.78rem;
-  font-weight: 650;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-sf-generated-metadata,
-sf-repository-ref,
-sf-stack,
-sf-entrypoints,
-sf-structure,
-sf-domains,
-sf-domain-dependencies,
-sf-goal,
-sf-requirements,
-sf-constraints,
-sf-acceptance-criteria,
-sf-status,
-sf-out-of-scope,
-sf-purpose,
-sf-dependencies,
-sf-expected-output,
-sf-validation-notes,
-sf-summary,
-sf-change-plan,
-sf-files,
-sf-commands,
-sf-validation,
-sf-risks,
-sf-notes {
-  margin-bottom: 1rem;
-  padding: 1.15rem;
-  background: rgba(255, 255, 255, 0.48);
-  border: 1px solid var(--sf-line);
-  border-radius: 22px;
-}
-
-sf-generated-metadata::before,
-sf-repository-ref::before,
-sf-stack::before,
-sf-entrypoints::before,
-sf-structure::before,
-sf-domains::before,
-sf-domain-dependencies::before,
-sf-goal::before,
-sf-requirements::before,
-sf-constraints::before,
-sf-acceptance-criteria::before,
-sf-out-of-scope::before,
-sf-purpose::before,
-sf-expected-output::before,
-sf-summary::before,
-sf-change-plan::before,
-sf-files::before,
-sf-commands::before,
-sf-validation::before,
-sf-risks::before {
-  display: block;
-  margin-bottom: 0.85rem;
-  padding-bottom: 0.65rem;
-  border-bottom: 1px solid var(--sf-line);
-  color: var(--sf-ink);
-  font-family: "SFMono-Regular", "Roboto Mono", Menlo, monospace;
-  font-size: 0.82rem;
-  font-weight: 760;
-  letter-spacing: 0.1em;
-  line-height: 1.15;
-  text-transform: uppercase;
-}
-
-sf-generated-metadata::before {
-  content: "Generated metadata";
-}
-
-sf-repository-ref::before {
-  content: "Repository";
-}
-
-sf-stack::before {
-  content: "Stack";
-}
-
-sf-entrypoints::before {
-  content: "Entrypoints";
-}
-
-sf-structure::before {
-  content: "Structure";
-}
-
-sf-domains::before {
-  content: "Domains";
-}
-
-sf-domain-dependencies::before {
-  content: "Domain dependencies";
-}
-
-sf-generated-at,
-sf-generator,
-sf-depth,
-sf-language,
-sf-framework,
-sf-package-manager,
-sf-entrypoint,
-sf-path,
-sf-file,
 sf-dependency,
-sf-requirement,
-sf-constraint,
-sf-criterion,
-sf-step,
-sf-check,
-sf-risk,
-sf-item,
-sf-command,
-sf-name {
-  margin-bottom: 0.45rem;
-  color: #2c2924;
-}
-
-sf-generated-metadata {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-sf-generated-metadata::before {
-  flex: 0 0 100%;
-}
-
-sf-generated-at,
-sf-generator,
-sf-depth,
-sf-language,
-sf-framework,
-sf-package-manager,
-sf-entrypoint,
-sf-path {
-  width: fit-content;
-  padding: 0.32rem 0.62rem;
-  background: var(--sf-paper-soft);
-  border: 1px solid rgba(154, 106, 58, 0.22);
-  border-radius: 999px;
-  color: #453b30;
-  font-size: 0.92rem;
-  line-height: 1.25;
-}
-
-sf-directory {
-  margin-top: 0.35rem;
-  padding-left: 0.9rem;
-  border-left: 1px solid var(--sf-line);
-}
-
-sf-directory::before {
-  content: attr(path);
-  display: block;
-  margin: 0.25rem 0 0.45rem;
-  color: var(--sf-accent);
-  font-family: "SFMono-Regular", "Roboto Mono", Menlo, monospace;
-  font-size: 0.82rem;
-  font-weight: 700;
-}
-
-sf-file {
-  position: relative;
-  padding-left: 1rem;
-  font-family: "SFMono-Regular", "Roboto Mono", Menlo, monospace;
-  font-size: 0.92rem;
-}
-
-sf-file::before {
-  content: "";
-  position: absolute;
-  left: 0.25rem;
-  top: 0.72em;
-  width: 0.28rem;
-  height: 0.28rem;
-  background: var(--sf-accent);
-  border-radius: 50%;
-}
-
-sf-domain {
-  margin-top: 0.75rem;
-  padding-top: 0.75rem;
-  border-top: 1px dashed var(--sf-line);
-}
-
-/* Shared Artifact Styles */
-
-sf-proposal,
-sf-task,
-sf-implementation,
 sf-title,
 sf-goal,
 sf-requirements,
@@ -322,29 +101,280 @@ sf-item {
   display: block;
 }
 
+sf-description {
+  max-width: 48rem;
+  color: var(--sf-ink-soft);
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-weight: 560;
+  letter-spacing: -0.025em;
+  line-height: 1.28;
+}
+
+/* Sheet */
+
+sf-codebase-map,
+sf-proposal,
+sf-task,
+sf-implementation {
+  position: relative;
+  display: grid;
+  width: min(var(--sf-page), 100%);
+  margin: 0 auto;
+  padding: clamp(1.5rem, 3.5vw, 2.5rem);
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, transparent 0 2rem, var(--sf-line-faint) 2rem 2.04rem, transparent 2.04rem),
+    radial-gradient(rgba(7, 7, 6, 0.08) 0.5px, transparent 0.68px) 0.9rem 0.9rem / 0.78rem 0.78rem,
+    var(--sf-paper);
+  border: 1px solid var(--sf-line-soft);
+  box-shadow: var(--sf-shadow);
+  gap: var(--sf-gap);
+}
+
+sf-codebase-map::after,
+sf-proposal::after,
+sf-task::after,
+sf-implementation::after {
+  content: "SPEC FORGE\A CODEBASE INTELLIGENCE";
+  display: block;
+  width: fit-content;
+  padding-top: 0.42rem;
+  border-top: 2px solid var(--sf-ink);
+  color: var(--sf-ink);
+  font-family: var(--sf-mono);
+  font-size: 0.66rem;
+  font-weight: 840;
+  letter-spacing: 0.08em;
+  line-height: 1.65;
+  white-space: pre;
+}
+
+sf-codebase-map::before,
+sf-proposal::before,
+sf-task::before,
+sf-implementation::before {
+  display: block;
+  color: var(--sf-ink);
+  font-size: clamp(4.8rem, 9.5vw, 7.7rem);
+  font-weight: 950;
+  letter-spacing: -0.045em;
+  line-height: 0.78;
+}
+
+sf-codebase-map::before {
+  content: "MAP.";
+}
+
 sf-proposal::before {
-  content: "Proposal";
+  content: "RFC.";
 }
 
 sf-task::before {
-  content: "Task";
+  content: "TASK.";
 }
 
 sf-implementation::before {
-  content: "Implementation";
+  content: "SHIP.";
 }
 
-sf-proposal > sf-title,
-sf-task > sf-title,
-sf-implementation > sf-title {
+sf-proposal::before,
+sf-task::before,
+sf-implementation::before {
+  font-size: clamp(4.2rem, 8vw, 6.45rem);
+  letter-spacing: -0.055em;
+  line-height: 0.82;
+}
+
+/* Editorial Header */
+
+sf-repository-ref {
+  min-height: 100%;
+  padding: 1.1rem 0 1.15rem;
+  border-top: 1px solid var(--sf-line);
+  border-bottom: 1px solid var(--sf-line-soft);
+}
+
+sf-repository-ref::before,
+sf-generated-metadata::before,
+.section-kicker {
   display: block;
-  max-width: 760px;
-  margin-bottom: 2rem;
+  width: fit-content;
+  margin-bottom: 0.8rem;
+  padding: 0.42rem 0.58rem;
+  background: var(--sf-ink);
+  color: var(--sf-paper-hot);
+  font-family: var(--sf-mono);
+  font-size: 0.64rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+sf-repository-ref::before {
+  content: "Repository Overview";
+}
+
+sf-generated-metadata::before {
+  content: "Generation";
+}
+
+sf-name {
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.68rem 0.82rem;
+  background: linear-gradient(90deg, var(--sf-lilac), rgba(200, 220, 197, 0.4));
+  border: 1px solid var(--sf-line);
   color: var(--sf-ink);
-  font-size: clamp(1.6rem, 3vw, 2.6rem);
-  font-weight: 720;
-  letter-spacing: -0.045em;
-  line-height: 1.08;
+  font-size: clamp(1.35rem, 2.6vw, 2.15rem);
+  font-weight: 910;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+/* Metadata */
+
+sf-generated-metadata {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  background: rgba(255, 250, 240, 0.62);
+  border-top: 1px solid var(--sf-line);
+  border-bottom: 1px solid var(--sf-line-soft);
+  min-height: 8.5rem;
+}
+
+sf-generated-metadata::before {
+  grid-column: 1 / -1;
+  margin: 0 0 0.35rem;
+}
+
+sf-generated-at,
+sf-generator,
+sf-depth {
+  position: relative;
+  min-height: 5rem;
+  padding: 1.65rem 0.78rem 0.65rem;
+  color: var(--sf-muted);
+  font-family: var(--sf-mono);
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
+sf-generated-at,
+sf-generator {
+  border-right: 1px solid var(--sf-line-soft);
+}
+
+sf-generated-at::before,
+sf-generator::before,
+sf-depth::before {
+  position: absolute;
+  top: 0.58rem;
+  left: 0.78rem;
+  color: var(--sf-ink);
+  font-size: 0.56rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+sf-generated-at::before {
+  content: "Generated";
+}
+
+sf-generator::before {
+  content: "Tool";
+}
+
+sf-depth::before {
+  content: "Depth";
+}
+
+/* Section Titles */
+
+sf-domains::before,
+sf-domain-dependencies::before,
+sf-structure::before {
+  display: block;
+  margin-bottom: clamp(1rem, 2vw, 1.45rem);
+  color: var(--sf-ink);
+  font-size: clamp(1.45rem, 3.2vw, 2.35rem);
+  font-weight: 920;
+  letter-spacing: -0.065em;
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+sf-domains::before {
+  content: "01 Domains";
+}
+
+sf-proposal > sf-domains::before,
+sf-task > sf-domains::before {
+  content: "Domains";
+  display: block;
+  width: fit-content;
+  margin-bottom: 0.78rem;
+  padding: 0.38rem 0.54rem;
+  background: var(--sf-ink);
+  color: var(--sf-paper-hot);
+  font-family: var(--sf-mono);
+  font-size: 0.63rem;
+  font-weight: 840;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+sf-domain-dependencies::before {
+  content: "03 Agent Notes";
+}
+
+sf-structure::before {
+  content: "02 Code Reference";
+}
+
+sf-stack::before,
+sf-entrypoints::before,
+sf-goal::before,
+sf-requirements::before,
+sf-constraints::before,
+sf-acceptance-criteria::before,
+sf-status::before,
+sf-out-of-scope::before,
+sf-purpose::before,
+sf-dependencies::before,
+sf-expected-output::before,
+sf-validation-notes::before,
+sf-summary::before,
+sf-change-plan::before,
+sf-files::before,
+sf-commands::before,
+sf-validation::before,
+sf-risks::before,
+.section-title {
+  display: block;
+  width: fit-content;
+  margin-bottom: 0.78rem;
+  padding: 0.38rem 0.54rem;
+  background: var(--sf-ink);
+  color: var(--sf-paper-hot);
+  font-family: var(--sf-mono);
+  font-size: 0.63rem;
+  font-weight: 840;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+sf-stack::before {
+  content: "Stack";
+}
+
+sf-entrypoints::before {
+  content: "Entrypoints";
 }
 
 sf-goal::before {
@@ -363,6 +393,10 @@ sf-acceptance-criteria::before {
   content: "Acceptance criteria";
 }
 
+sf-status::before {
+  content: "Status";
+}
+
 sf-out-of-scope::before {
   content: "Out of scope";
 }
@@ -371,8 +405,16 @@ sf-purpose::before {
   content: "Purpose";
 }
 
+sf-dependencies::before {
+  content: "Dependencies";
+}
+
 sf-expected-output::before {
   content: "Expected output";
+}
+
+sf-validation-notes::before {
+  content: "Validation notes";
 }
 
 sf-summary::before {
@@ -399,46 +441,530 @@ sf-risks::before {
   content: "Risks";
 }
 
-@media (min-width: 880px) {
+/* Small Panels */
+
+sf-stack,
+sf-entrypoints,
+sf-goal,
+sf-requirements,
+sf-constraints,
+sf-acceptance-criteria,
+sf-status,
+sf-out-of-scope,
+sf-purpose,
+sf-dependencies,
+sf-expected-output,
+sf-validation-notes,
+sf-summary,
+sf-change-plan,
+sf-files,
+sf-commands,
+sf-validation,
+sf-risks,
+sf-notes,
+.metadata-strip,
+.insight-card,
+.reading-order {
+  padding: 1rem;
+  background: rgba(255, 250, 240, 0.52);
+  border: 1px solid var(--sf-line-soft);
+}
+
+sf-stack,
+sf-entrypoints {
+  min-height: 8.5rem;
+}
+
+sf-stack,
+sf-entrypoints {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 0.62rem;
+}
+
+sf-stack::before,
+sf-entrypoints::before {
+  flex: 0 0 100%;
+}
+
+sf-stack sf-languages,
+sf-stack sf-frameworks,
+sf-stack sf-package-managers {
+  display: contents;
+}
+
+sf-language,
+sf-framework,
+sf-package-manager,
+sf-entrypoint,
+sf-path,
+sf-domain-ref,
+sf-proposal-ref,
+sf-task-ref,
+sf-codebase-map-ref,
+sf-repository-ref[ref] {
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.44rem 0.66rem;
+  background: var(--sf-paper-hot);
+  border: 1px solid var(--sf-line);
+  color: var(--sf-ink);
+  font-size: 0.84rem;
+  line-height: 1.12;
+}
+
+sf-language:first-of-type,
+sf-entrypoint {
+  background: var(--sf-yellow);
+}
+
+sf-framework:first-of-type {
+  background: var(--sf-sage);
+}
+
+sf-entrypoint {
+  font-family: var(--sf-mono);
+}
+
+sf-domain-ref,
+sf-proposal-ref,
+sf-task-ref,
+sf-codebase-map-ref,
+sf-repository-ref[ref] {
+  display: inline-block;
+  margin: 0 0.5rem 0.5rem 0;
+  background: rgba(200, 220, 197, 0.42);
+  font-family: var(--sf-mono);
+  font-size: 0.78rem;
+}
+
+sf-domain-ref::before,
+sf-proposal-ref::before,
+sf-task-ref::before,
+sf-codebase-map-ref::before,
+sf-repository-ref[ref]::before {
+  content: attr(ref);
+}
+
+sf-codebase-map-ref::before {
+  content: attr(repo) " / codebase-map";
+}
+
+sf-repository-ref[ref]::before {
+  content: attr(ref);
+}
+
+sf-entrypoint::before {
+  content: attr(path);
+}
+
+/* Domains */
+
+sf-domains {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sf-gap);
+  align-items: stretch;
+  padding: var(--sf-gap-lg);
+  background:
+    linear-gradient(90deg, rgba(200, 220, 197, 0.58) 0 0.48rem, transparent 0.48rem),
+    rgba(255, 250, 240, 0.56);
+  border-top: 1px solid var(--sf-line);
+  border-bottom: 1px solid var(--sf-line-soft);
+}
+
+sf-proposal > sf-domains,
+sf-task > sf-domains {
+  display: block;
+  padding: 1rem;
+  background: rgba(255, 250, 240, 0.52);
+  border: 1px solid var(--sf-line-soft);
+}
+
+sf-repository-ref[ref] {
+  padding: 0.44rem 0.66rem;
+  border: 1px solid var(--sf-line);
+}
+
+sf-domains::before {
+  grid-column: 1 / -1;
+}
+
+sf-domain,
+.domain-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  min-height: 13.5rem;
+  padding: 1.25rem;
+  background: rgba(255, 250, 240, 0.82);
+  border: 1px solid var(--sf-line);
+}
+
+sf-domain::before {
+  content: attr(ref);
+  display: block;
+  margin-bottom: 0.8rem;
+  color: var(--sf-ink);
+  font-size: clamp(1.15rem, 1.75vw, 1.65rem);
+  font-weight: 920;
+  letter-spacing: -0.06em;
+  line-height: 0.94;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+  text-transform: uppercase;
+}
+
+sf-domain sf-paths {
+  margin-bottom: 1rem;
+}
+
+sf-domain sf-path {
+  background: rgba(200, 220, 197, 0.44);
+  font-family: var(--sf-mono);
+  font-size: 0.78rem;
+}
+
+sf-domain sf-files {
+  flex: 1;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--sf-line-soft);
+}
+
+sf-domain sf-files::before {
+  display: none;
+}
+
+sf-domain sf-file {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  color: var(--sf-ink);
+  font-size: 0.84rem;
+  line-height: 1.85;
+}
+
+sf-domain sf-file::before {
+  content: none;
+}
+
+sf-domain sf-file + sf-file::before {
+  content: " · ";
+  position: static;
+  display: inline;
+  width: auto;
+  height: auto;
+  background: transparent;
+  color: var(--sf-muted);
+}
+
+/* Agent Notes */
+
+sf-domain-dependencies,
+.agent-note {
+  position: relative;
+  min-height: 18rem;
+  padding: 1.35rem 1.4rem 1.35rem 2.1rem;
+  background:
+    linear-gradient(90deg, rgba(199, 215, 198, 0.95) 0 0.5rem, transparent 0.5rem),
+    rgba(255, 250, 240, 0.64);
+  border-top: 1px solid var(--sf-line);
+  border-bottom: 1px solid var(--sf-line-soft);
+}
+
+sf-domain-dependencies::after,
+.agent-note::after {
+  content: "Touching auth may affect profile and payments.";
+  display: block;
+  max-width: 30rem;
+  margin-top: 1rem;
+  color: var(--sf-ink-soft);
+  font-size: clamp(1rem, 1.6vw, 1.22rem);
+  font-weight: 650;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+}
+
+sf-dependency {
+  display: inline-block;
+  margin: 0 0.5rem 0.5rem 0;
+  padding: 0.44rem 0.6rem;
+  background: rgba(199, 215, 198, 0.45);
+  border: 1px solid var(--sf-line-soft);
+  color: var(--sf-ink-soft);
+  font-family: var(--sf-mono);
+  font-size: 0.78rem;
+  line-height: 1.2;
+}
+
+sf-dependency::before {
+  content: attr(from) " -> " attr(to);
+}
+
+/* Code Reference */
+
+sf-structure,
+.code-tree {
+  min-height: 26rem;
+  padding: 1.35rem;
+  background:
+    linear-gradient(rgba(7, 7, 6, 0.032) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(7, 7, 6, 0.032) 1px, transparent 1px),
+    rgba(255, 250, 240, 0.46);
+  background-size: 2.25rem 2.25rem;
+  border: 1px solid var(--sf-line-soft);
+}
+
+sf-directory {
+  margin-top: 0.42rem;
+  padding-left: 1.05rem;
+  border-left: 1px solid rgba(7, 7, 6, 0.16);
+}
+
+sf-directory::before {
+  content: attr(path);
+  display: inline-block;
+  margin: 0.25rem 0 0.42rem;
+  padding: 0.14rem 0.32rem;
+  background: rgba(255, 250, 240, 0.88);
+  color: var(--sf-ink);
+  font-family: var(--sf-mono);
+  font-size: 0.76rem;
+  font-weight: 850;
+}
+
+sf-file {
+  position: relative;
+  margin-bottom: 0.05rem;
+  padding-left: 0.95rem;
+  color: var(--sf-ink-soft);
+  font-family: var(--sf-mono);
+  font-size: 0.82rem;
+  line-height: 1.72;
+}
+
+sf-file::before {
+  content: "";
+  position: absolute;
+  left: 0.16rem;
+  top: 0.72em;
+  width: 0.18rem;
+  height: 0.18rem;
+  background: var(--sf-ink);
+}
+
+/* Other Artifacts */
+
+sf-proposal > sf-title,
+sf-task > sf-title,
+sf-implementation > sf-title {
+  padding: 0.78rem 0.92rem;
+  background: linear-gradient(90deg, var(--sf-lilac), rgba(200, 220, 197, 0.42));
+  border: 1px solid var(--sf-line);
+  color: var(--sf-ink);
+  font-size: clamp(1.45rem, 3vw, 2.4rem);
+  font-weight: 880;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  text-wrap: balance;
+}
+
+sf-requirement,
+sf-constraint,
+sf-criterion,
+sf-step,
+sf-check,
+sf-risk,
+sf-item,
+sf-command {
+  margin-bottom: 0.52rem;
+  padding-bottom: 0.52rem;
+  border-bottom: 1px dotted rgba(7, 7, 6, 0.35);
+  color: var(--sf-ink-soft);
+}
+
+sf-requirement:last-child,
+sf-constraint:last-child,
+sf-criterion:last-child,
+sf-step:last-child,
+sf-check:last-child,
+sf-risk:last-child,
+sf-item:last-child,
+sf-command:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+sf-files > sf-file[path] {
+  padding-left: 0;
+}
+
+sf-files > sf-file[path]::before {
+  content: attr(path);
+  position: static;
+  display: block;
+  width: fit-content;
+  height: auto;
+  margin-bottom: 0.28rem;
+  padding: 0.24rem 0.42rem;
+  background: rgba(200, 220, 197, 0.42);
+  border: 1px solid var(--sf-line-soft);
+  color: var(--sf-ink);
+  font-size: 0.72rem;
+}
+
+sf-command {
+  font-family: var(--sf-mono);
+  font-size: 0.82rem;
+}
+
+/* Layout */
+
+@media (min-width: 900px) {
   sf-codebase-map,
   sf-proposal,
   sf-task,
   sf-implementation {
-    display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    gap: 1rem;
+    grid-auto-rows: auto;
+    grid-auto-flow: row;
+    align-items: start;
+  }
+
+  sf-codebase-map::after,
+  sf-proposal::after,
+  sf-task::after,
+  sf-implementation::after {
+    grid-column: 1 / 5;
+    grid-row: 1;
   }
 
   sf-codebase-map::before,
-  sf-codebase-map::after,
   sf-proposal::before,
-  sf-proposal::after,
   sf-task::before,
+  sf-implementation::before {
+    grid-column: 1 / 5;
+    grid-row: 2;
+    align-self: end;
+    margin-top: -0.45rem;
+  }
+
+  sf-codebase-map > sf-repository-ref {
+    grid-column: 5 / -1;
+    grid-row: 1 / 3;
+    align-self: stretch;
+  }
+
+  sf-codebase-map > sf-domains {
+    grid-column: 1 / -1;
+    grid-row: 4;
+  }
+
+  sf-codebase-map > sf-generated-metadata {
+    grid-column: 1 / 6;
+    grid-row: 3;
+    align-self: stretch;
+  }
+
+  sf-codebase-map > sf-entrypoints {
+    grid-column: 6 / 9;
+    grid-row: 3;
+    align-self: stretch;
+  }
+
+  sf-codebase-map > sf-stack {
+    grid-column: 9 / -1;
+    grid-row: 3;
+    align-self: stretch;
+  }
+
+  sf-codebase-map > sf-domain-dependencies {
+    grid-column: 9 / -1;
+    grid-row: 5;
+    align-self: stretch;
+  }
+
+  sf-codebase-map > sf-structure {
+    grid-column: 1 / 9;
+    grid-row: 5;
+    align-self: stretch;
+  }
+
+  sf-proposal::after,
   sf-task::after,
-  sf-implementation::before,
-  sf-implementation::after,
+  sf-implementation::after {
+    grid-column: 1 / 5;
+    grid-row: 1;
+  }
+
+  sf-proposal::before,
+  sf-task::before,
+  sf-implementation::before {
+    grid-column: 1 / 5;
+    grid-row: 2;
+    align-self: start;
+  }
+
   sf-proposal > sf-title,
   sf-task > sf-title,
   sf-implementation > sf-title {
-    grid-column: 1 / -1;
+    grid-column: 5 / -1;
+    grid-row: 1;
+    align-self: end;
   }
 
-  sf-generated-metadata,
-  sf-stack,
-  sf-structure,
+  sf-proposal > sf-description,
+  sf-task > sf-description {
+    grid-column: 5 / -1;
+    grid-row: 2;
+    align-self: start;
+    max-width: 42rem;
+    font-size: clamp(1rem, 1.45vw, 1.18rem);
+    line-height: 1.32;
+  }
+
+  sf-implementation > sf-task-ref,
+  sf-implementation > sf-repository-ref,
+  sf-implementation > sf-codebase-map-ref,
+  sf-task > sf-proposal-ref {
+    grid-column: span 4;
+  }
+
+  sf-proposal > sf-domains,
+  sf-task > sf-domains {
+    grid-column: span 4;
+  }
+
+  sf-task > sf-dependencies,
+  sf-task > sf-validation-notes,
+  sf-implementation > sf-commands,
+  sf-implementation > sf-risks {
+    grid-column: span 4;
+  }
+
+  sf-proposal > sf-acceptance-criteria,
+  sf-task > sf-expected-output,
+  sf-implementation > sf-files,
+  sf-implementation > sf-validation {
+    grid-column: span 8;
+  }
+
+  sf-proposal > sf-description + *,
+  sf-task > sf-description + * {
+    margin-top: 0;
+  }
+
   sf-goal,
   sf-requirements,
   sf-summary,
   sf-change-plan,
   sf-files,
   sf-validation {
-    grid-column: span 7;
+    grid-column: span 8;
   }
 
-  sf-repository-ref,
-  sf-entrypoints,
-  sf-domains,
-  sf-domain-dependencies,
   sf-constraints,
   sf-acceptance-criteria,
   sf-status,
@@ -450,20 +976,207 @@ sf-risks::before {
   sf-commands,
   sf-risks,
   sf-notes {
-    grid-column: span 5;
+    grid-column: span 4;
+  }
+
+  sf-proposal > sf-goal,
+  sf-task > sf-purpose,
+  sf-implementation > sf-summary,
+  sf-implementation > sf-change-plan {
+    grid-column: 1 / 9;
+  }
+
+  sf-proposal > sf-domains,
+  sf-task > sf-domains {
+    grid-column: 9 / -1;
+  }
+
+  sf-proposal > sf-requirements,
+  sf-task > sf-expected-output,
+  sf-implementation > sf-files,
+  sf-implementation > sf-validation {
+    grid-column: 1 / 9;
+  }
+
+  sf-proposal > sf-constraints,
+  sf-task > sf-dependencies,
+  sf-implementation > sf-commands,
+  sf-implementation > sf-risks {
+    grid-column: 9 / -1;
+  }
+
+  sf-proposal > sf-out-of-scope,
+  sf-task > sf-validation-notes,
+  sf-proposal > sf-status,
+  sf-task > sf-status {
+    grid-column: span 4;
+  }
+
+  sf-task > sf-proposal-ref {
+    grid-column: 1 / 5;
+    grid-row: 3;
+  }
+
+  sf-task > sf-domains {
+    grid-column: 5 / -1;
+    grid-row: 3;
+  }
+
+  sf-task > sf-purpose {
+    grid-column: 1 / 8;
+    grid-row: 4;
+    min-height: 11rem;
+  }
+
+  sf-task > sf-dependencies {
+    grid-column: 8 / -1;
+    grid-row: 4;
+    min-height: 11rem;
+  }
+
+  sf-task > sf-expected-output {
+    grid-column: 1 / 8;
+    grid-row: 5;
+    min-height: 13rem;
+  }
+
+  sf-task > sf-validation-notes {
+    grid-column: 8 / -1;
+    grid-row: 5;
+    min-height: 13rem;
+  }
+
+  sf-task > sf-status {
+    grid-column: 1 / -1;
+    grid-row: 6;
+  }
+
+  sf-task > sf-status {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: 0;
+    padding: 0.85rem 1rem;
+  }
+
+  sf-task > sf-status::before {
+    flex: 0 0 auto;
+    margin-bottom: 0;
+  }
+
+  sf-proposal > sf-acceptance-criteria {
+    grid-column: span 8;
+  }
+
+  sf-proposal > sf-status,
+  sf-task > sf-status {
+    grid-column: 1 / -1;
+  }
+
+  sf-implementation > sf-task-ref {
+    grid-column: 5 / 8;
+    grid-row: 2;
+    align-self: start;
+  }
+
+  sf-implementation > sf-repository-ref[ref] {
+    grid-column: 8 / 10;
+    grid-row: 2;
+    align-self: start;
+  }
+
+  sf-implementation > sf-codebase-map-ref {
+    grid-column: 10 / -1;
+    grid-row: 2;
+    align-self: start;
+  }
+
+  sf-implementation > sf-summary {
+    grid-column: 1 / 8;
+    grid-row: auto;
+  }
+
+  sf-implementation > sf-change-plan {
+    grid-column: 1 / 8;
+  }
+
+  sf-implementation > sf-files {
+    grid-column: 1 / 8;
+  }
+
+  sf-implementation > sf-commands,
+  sf-implementation > sf-risks {
+    grid-column: 8 / -1;
+  }
+
+  sf-implementation > sf-validation {
+    grid-column: 1 / -1;
   }
 }
 
-@media (max-width: 720px) {
-  body {
-    padding: 1rem;
-    font-size: 16px;
+@media (min-width: 900px) and (max-width: 1120px) {
+  sf-domains {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   sf-codebase-map,
   sf-proposal,
   sf-task,
   sf-implementation {
-    border-radius: 24px;
+    --sf-gap: 20px;
+    --sf-gap-lg: 24px;
+  }
+}
+
+@media (max-width: 899px) {
+  sf-codebase-map,
+  sf-proposal,
+  sf-task,
+  sf-implementation {
+    gap: 20px;
+  }
+
+  sf-codebase-map::before,
+  sf-proposal::before,
+  sf-task::before,
+  sf-implementation::before {
+    font-size: clamp(4.5rem, 24vw, 7rem);
+  }
+
+  sf-generated-metadata,
+  sf-domains {
+    grid-template-columns: 1fr;
+  }
+
+  sf-domains {
+    padding: 24px;
+  }
+
+  sf-domain,
+  sf-domain-dependencies,
+  sf-structure {
+    min-height: auto;
+  }
+
+  sf-generated-at,
+  sf-generator {
+    border-right: 0;
+    border-bottom: 1px solid var(--sf-line-soft);
+  }
+}
+
+@media print {
+  body {
+    padding: 0;
+    background: var(--sf-paper);
+  }
+
+  sf-codebase-map,
+  sf-proposal,
+  sf-task,
+  sf-implementation {
+    width: 100%;
+    min-height: 100vh;
+    box-shadow: none;
   }
 }
