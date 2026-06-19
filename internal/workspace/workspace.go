@@ -85,10 +85,19 @@ const defaultWorkspaceHTML = `<!doctype html>
 
 const defaultCSS = `body {
   margin: 0;
-  padding: 2rem;
-  background: #f8fafc;
-  color: #111827;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  min-height: 100vh;
+  padding: 4rem 1.5rem;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.92), transparent 34rem),
+    linear-gradient(135deg, #f5f5f7 0%, #eef1f5 46%, #f8f9fb 100%);
+  color: #1d1d1f;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+body * {
+  box-sizing: border-box;
 }
 
 sf-workspace,
@@ -101,52 +110,72 @@ sf-tasks {
 }
 
 sf-workspace {
-  max-width: 960px;
+  max-width: 980px;
   margin: 0 auto;
 }
 
 sf-title {
-  font-size: 2rem;
+  color: #111113;
+  font-size: clamp(2.25rem, 6vw, 4.75rem);
   font-weight: 700;
-  margin-bottom: 1rem;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+  margin-bottom: 1.5rem;
 }
 
 sf-domains,
 sf-repositories,
 sf-proposals,
 sf-tasks {
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 1rem;
   margin-bottom: 1rem;
+  padding: 1.15rem 1.25rem;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(18px);
+}
+
+sf-domains::before,
+sf-repositories::before,
+sf-proposals::before,
+sf-tasks::before {
+  display: block;
+  color: #1d1d1f;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
 }
 
 sf-domains::before {
   content: "Domains";
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
 sf-repositories::before {
   content: "Repositories";
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
 sf-proposals::before {
   content: "Proposals";
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
 sf-tasks::before {
   content: "Tasks";
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 720px) {
+  body {
+    padding: 2rem 1rem;
+  }
+
+  sf-domains,
+  sf-repositories,
+  sf-proposals,
+  sf-tasks {
+    border-radius: 16px;
+    padding: 1rem;
+  }
 }
 `

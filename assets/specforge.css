@@ -1,4 +1,19 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 4rem 1.5rem;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.92), transparent 34rem),
+    linear-gradient(135deg, #f5f5f7 0%, #eef1f5 46%, #f8f9fb 100%);
+  color: #1d1d1f;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+}
 
+body * {
+  box-sizing: border-box;
+}
 
 /* Codebase Map */
 
@@ -29,16 +44,19 @@ sf-dependency {
 }
 
 sf-codebase-map {
-  max-width: 960px;
+  max-width: 980px;
   margin: 0 auto;
 }
 
 sf-codebase-map::before {
   content: "Codebase Map";
   display: block;
-  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #111113;
+  font-size: clamp(2.25rem, 6vw, 4.75rem);
   font-weight: 700;
-  margin-bottom: 1rem;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
 }
 
 sf-generated-metadata,
@@ -47,47 +65,78 @@ sf-stack,
 sf-entrypoints,
 sf-structure,
 sf-domains,
-sf-domain-dependencies {
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 1rem;
+sf-domain-dependencies,
+sf-goal,
+sf-requirements,
+sf-constraints,
+sf-acceptance-criteria,
+sf-status,
+sf-out-of-scope,
+sf-purpose,
+sf-dependencies,
+sf-expected-output,
+sf-validation-notes,
+sf-summary,
+sf-change-plan,
+sf-files,
+sf-commands,
+sf-validation,
+sf-risks,
+sf-notes {
   margin-bottom: 1rem;
+  padding: 1.15rem 1.25rem;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(18px);
+}
+
+sf-generated-metadata::before,
+sf-stack::before,
+sf-entrypoints::before,
+sf-structure::before,
+sf-domain-dependencies::before,
+sf-goal::before,
+sf-requirements::before,
+sf-constraints::before,
+sf-acceptance-criteria::before,
+sf-out-of-scope::before,
+sf-purpose::before,
+sf-expected-output::before,
+sf-summary::before,
+sf-change-plan::before,
+sf-files::before,
+sf-commands::before,
+sf-validation::before,
+sf-risks::before {
+  display: block;
+  margin-bottom: 0.55rem;
+  color: #1d1d1f;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 sf-generated-metadata::before {
   content: "Generated Metadata";
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
 sf-stack::before {
   content: "Stack";
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
 sf-entrypoints::before {
   content: "Entrypoints";
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
 sf-structure::before {
   content: "Structure";
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
 sf-domain-dependencies::before {
   content: "Domain Dependencies";
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
 sf-directory {
@@ -96,15 +145,19 @@ sf-directory {
 }
 
 sf-file,
-sf-path {
-  margin-left: 1rem;
-  color: #4b5563;
+sf-path,
+sf-dependency,
+sf-requirement,
+sf-constraint,
+sf-criterion,
+sf-step,
+sf-check,
+sf-risk,
+sf-item,
+sf-command {
+  margin-bottom: 0.5rem;
+  color: #515154;
 }
-
-sf-dependency {
-  color: #4b5563;
-}
-
 
 /* Shared Artifact Styles */
 
@@ -146,167 +199,127 @@ sf-item {
 sf-proposal,
 sf-task,
 sf-implementation {
-  max-width: 960px;
+  max-width: 980px;
   margin: 0 auto;
+}
+
+sf-proposal::before,
+sf-task::before,
+sf-implementation::before {
+  display: block;
+  margin-bottom: 1.5rem;
+  color: #111113;
+  font-size: clamp(2.25rem, 6vw, 4.75rem);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
 }
 
 sf-proposal::before {
   content: "Proposal";
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
 }
 
 sf-task::before {
   content: "Task";
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
 }
 
 sf-implementation::before {
   content: "Implementation";
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
 }
 
 sf-proposal > sf-title,
 sf-task > sf-title,
 sf-implementation > sf-title {
   display: block;
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-sf-goal,
-sf-requirements,
-sf-constraints,
-sf-acceptance-criteria,
-sf-status,
-sf-out-of-scope,
-sf-purpose,
-sf-dependencies,
-sf-expected-output,
-sf-validation-notes,
-sf-summary,
-sf-change-plan,
-sf-files,
-sf-commands,
-sf-validation,
-sf-risks,
-sf-notes,
-sf-domains {
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  color: #1d1d1f;
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  font-weight: 650;
+  letter-spacing: -0.025em;
 }
 
 sf-goal::before {
   content: "Goal";
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
 sf-requirements::before {
   content: "Requirements";
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
 sf-constraints::before {
   content: "Constraints";
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
 sf-acceptance-criteria::before {
   content: "Acceptance Criteria";
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
 sf-out-of-scope::before {
   content: "Out of Scope";
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
 sf-purpose::before {
   content: "Purpose";
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
 sf-expected-output::before {
   content: "Expected Output";
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
 sf-summary::before {
   content: "Summary";
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
 sf-change-plan::before {
   content: "Change Plan";
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
 sf-files::before {
   content: "Files";
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
 sf-commands::before {
   content: "Commands";
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
 sf-validation::before {
   content: "Validation";
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
 sf-risks::before {
   content: "Risks";
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
 }
 
-sf-requirement,
-sf-constraint,
-sf-criterion,
-sf-step,
-sf-check,
-sf-risk,
-sf-item,
-sf-command {
-  margin-bottom: 0.5rem;
-  color: #4b5563;
+@media (max-width: 720px) {
+  body {
+    padding: 2rem 1rem;
+  }
+
+  sf-generated-metadata,
+  sf-repository-ref,
+  sf-stack,
+  sf-entrypoints,
+  sf-structure,
+  sf-domains,
+  sf-domain-dependencies,
+  sf-goal,
+  sf-requirements,
+  sf-constraints,
+  sf-acceptance-criteria,
+  sf-status,
+  sf-out-of-scope,
+  sf-purpose,
+  sf-dependencies,
+  sf-expected-output,
+  sf-validation-notes,
+  sf-summary,
+  sf-change-plan,
+  sf-files,
+  sf-commands,
+  sf-validation,
+  sf-risks,
+  sf-notes {
+    border-radius: 16px;
+    padding: 1rem;
+  }
 }
