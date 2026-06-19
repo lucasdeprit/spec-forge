@@ -1,0 +1,75 @@
+/* SpecForge global styles */
+
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #1f2937;
+  background: #f9fafb;
+}
+
+body {
+  margin: 0;
+  padding: 2rem;
+}
+
+sf-workspace,
+sf-domains,
+sf-domain,
+sf-repositories,
+sf-repository,
+sf-name,
+sf-description,
+sf-role {
+  display: block;
+}
+
+sf-workspace {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+sf-workspace > sf-name {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+sf-description {
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+}
+
+sf-domains,
+sf-repositories {
+  margin-top: 2rem;
+}
+
+sf-domains::before {
+  content: "Domains";
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+sf-repositories::before {
+  content: "Repositories";
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+sf-domain,
+sf-repository {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+sf-domain > sf-name,
+sf-repository > sf-name {
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}

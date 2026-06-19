@@ -2,45 +2,88 @@
 
 ## Artifact Model
 
-Codebase Map
--> What exists
+SpecForge has the following core artifacts:
 
-Proposal
--> What should exist
+- Workspace
+- Domain
+- Repository
+- Codebase Map
+- Proposal
+- Task
+- Implementation
 
-Tasks
--> How the problem is divided
+## Responsibilities
 
-Implementation
--> How the code changes
+### Workspace
 
-## Flow
+The root of a SpecForge system.
 
-Codebase Map
-    -> Proposal
-    -> Tasks
-    -> Implementation
+It defines:
 
-## Codebase Map
+- workspace identity
+- domains
+- repositories
+- global configuration
+
+### Domain
+
+A business area.
+
+Examples:
+
+- Authentication
+- Profile
+- Cards
+- Payments
+- Notifications
+- Jobs
+
+For v0.1, domains exist inside workspace.html. They are not separate documents.
+
+### Repository
+
+A technical execution unit.
+
+Examples:
+
+- ios-app
+- backend-api
+- web-admin
+- infra
+
+Repositories are not stored inside the SpecForge workspace. They are referenced by path.
+
+### Codebase Map
+
+A living repository-specific document.
 
 Purpose:
 
-- Describe the current repository.
-- Act as the navigational truth of the repository.
-- Remain a living document.
+- show what exists
+- show where it is
+- show how repository parts relate
 
-Rules:
+Contains:
 
-- One active map per repository.
-- No versioned map history.
-- Updated through init, map, and sync.
+- stack
+- domains
+- paths
+- file names
+- dependencies between domains
 
-## Proposal
+Does not contain:
 
-Purpose:
+- agent instructions
+- naming conventions
+- work rules
 
-- Describe the desired outcome.
-- Remain implementation agnostic.
+Those belong in AGENTS.md or equivalent agent instructions.
+
+### Proposal
+
+A global document describing what should exist.
+
+A Proposal is implementation agnostic.
 
 Fields:
 
@@ -60,17 +103,17 @@ States:
 - completed
 - archived
 
-## Tasks
+### Task
 
-Purpose:
+A global document belonging to one Proposal.
 
-- Divide a Proposal into reasoning units.
+A Task divides the problem logically.
 
-Rules:
+A Task is:
 
-- Technology agnostic.
-- Repository agnostic.
-- No implementation details.
+- technology agnostic
+- repository agnostic
+- implementation agnostic
 
 States:
 
@@ -79,28 +122,73 @@ States:
 - blocked
 - done
 
-## Implementation
+### Implementation
 
-Purpose:
+A repository-specific document belonging to one Task and one Repository.
 
-- Apply Tasks to a specific repository.
+An Implementation describes how to apply a Task in a concrete repository.
 
-Rules:
+It can reference:
 
-- Repository specific.
-- Technology aware.
-- References the Codebase Map.
+- files
+- directories
+- classes
+- functions
+- modules
+- tests
+- commands
+
+## Relationships
+
+- A Workspace has many Domains.
+- A Workspace has many Repositories.
+- A Repository has one living Codebase Map.
+- A Proposal may reference one or more Domains.
+- A Task belongs to one Proposal.
+- An Implementation belongs to one Task and one Repository.
 
 ## IDs
 
 Proposal:
 
+```txt
 PROP-YYYYMMDD-XXXX-slug
+```
 
 Task:
 
+```txt
 TASK-YYYYMMDD-XXXX-slug
+```
 
 Implementation:
 
+```txt
 IMPL-YYYYMMDD-XXXX-slug
+```
+
+Repository IDs and Domain IDs should be stable slugs.
+
+Examples:
+
+```txt
+ios-app
+backend-api
+authentication
+profile
+payments
+```
+
+## Source of Truth
+
+The source of truth is semantic HTML.
+
+CSS is external.
+
+Rules:
+
+- no inline CSS
+- no inline JavaScript
+- no persistent duplicated JSON
+- no mandatory MDX
+- no mandatory React

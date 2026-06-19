@@ -2,42 +2,60 @@
 
 ## v0.1
 
-CLI First
+CLI-first multi-repository workspace.
 
 Goals:
 
-- specforge init
-- specforge map
-- specforge proposal
-- specforge tasks
-- specforge implementation
-- specforge sync
+- initialize a SpecForge workspace
+- register repositories
+- generate living Codebase Maps
+- create global Proposals
+- create global Tasks from Proposals
+- create repository-specific Implementations from Tasks
+- validate semantic HTML artifacts
+
+Commands:
+
+```bash
+specforge init
+specforge repo add <id> <path>
+specforge map <repo-id>
+specforge proposal
+specforge tasks <proposal-id>
+specforge implementation <task-id> --repo <repo-id>
+specforge sync <repo-id>
+specforge validate
+```
 
 Deliverables:
 
-- HTML artifact templates
-- Codebase Map generation
-- Proposal generation
-- Task generation
-- Repository-specific Implementation generation
+- workspace.html schema
+- codebase-map.html schema
+- proposal.html schema
+- task.html schema
+- implementation.html schema
+- global CSS
+- example artifacts
 
-Non Goals:
+Non-goals:
 
-- Web UI
-- GitHub integration
+- web UI
+- hosted service
 - Jira integration
-- Slack integration
-- Hosted service
+- GitHub integration
+- React runtime
+- MDX runtime
 
 ## v0.2
 
-- Interactive HTML documents
-- Improved map generation
-- Better repository analysis
-- Multi-repository workflows
+- better domain detection
+- richer validation
+- improved visual themes
+- optional context extraction for agents
+- workspace index generation
 
 ## v1.0
 
-- Stable specification
-- Plugin system
-- Enterprise workflows
+- stable semantic HTML specification
+- plugin system
+- enterprise workflow support

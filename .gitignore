@@ -1,0 +1,42 @@
+# Binaries
+specforge
+specforge.exe
+bin/
+dist/
+
+# Go
+*.test
+*.out
+coverage.out
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.*
+
+# Temporary files
+tmp/
+temp/
+
+# Generated artifacts during development
+.specforge/
+
+# Build outputs
+build/
+release/
+
+# Vendor (si decides no versionarlo)
+vendor/
+
+# JetBrains
+*.iml

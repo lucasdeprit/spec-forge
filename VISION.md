@@ -4,30 +4,54 @@ Modern AI-assisted development suffers from a recurring problem:
 
 Every agent repeatedly rediscovers the same codebase.
 
-Developers spend time explaining architecture, conventions, module boundaries,
-and project context instead of focusing on product intent.
+Developers spend time explaining architecture, module boundaries, repository roles and product context instead of focusing on intent.
 
 SpecForge exists to solve this problem.
 
-The goal is to create a universal, AI-friendly Specification Driven Development system
-based on HTML documents that are readable by both humans and machines.
+SpecForge is a multi-repository Specification Driven Development workspace based on semantic HTML documents that are readable by humans and AI agents.
 
-SpecForge separates software change into four artifacts:
+The core principle is:
 
-- Codebase Map
-- Proposal
-- Tasks
-- Implementation
+The agent should never have to rediscover the project.
 
-Each artifact has a single responsibility and a clear relationship with the others.
+## Product Philosophy
 
-The Codebase Map represents the current reality of a repository.
+SpecForge does not generate intelligence.
 
-The Proposal describes the desired outcome.
+SpecForge structures knowledge.
 
-Tasks divide the problem into manageable reasoning units.
+It separates software change into clear artifacts:
 
-Implementation describes how the desired change should be applied to a specific repository.
+- Domain: the business area
+- Repository: the technical execution unit
+- Codebase Map: what exists
+- Proposal: what should exist
+- Task: how the problem is divided
+- Implementation: how the code changes in a specific repository
 
-The result is a persistent knowledge layer that reduces rediscovery and improves
-collaboration between humans and AI agents.
+## Why HTML
+
+SpecForge uses semantic HTML as a single source of truth.
+
+HTML gives the project:
+
+- explicit structure
+- browser-native readability
+- CSS-based presentation
+- agent-readable semantics
+- no need for React, MDX or duplicated JSON
+
+The same document can be read by a human in a browser and by an agent as structured semantic content.
+
+## Enterprise Direction
+
+SpecForge is designed for multi-repository systems.
+
+Large products are usually organized around business domains and implemented across multiple repositories.
+
+SpecForge models this directly:
+
+- Domains represent business.
+- Repositories represent execution.
+- Proposals and Tasks are global.
+- Codebase Maps and Implementations are repository-specific.
