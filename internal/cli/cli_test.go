@@ -2,6 +2,8 @@ package cli
 
 import (
 	"bytes"
+	"os"
+	"path/filepath"
 	"strings"
 	"testing"
 )
@@ -34,10 +36,43 @@ func TestRunHelp(t *testing.T) {
 	}
 
 	output := stdout.String()
-	for _, expected := range []string{"Usage:", "Commands:", "version"} {
+	for _, expected := range []string{"Usage:", "Commands:", "init", "version"} {
 		if !strings.Contains(output, expected) {
 			t.Fatalf("stdout %q does not contain %q", output, expected)
 		}
+	}
+
+	if stderr.Len() != 0 {
+		t.Fatalf("stderr = %q, want empty", stderr.String())
+	}
+}
+
+func TestRunInit(t *testing.T) {
+	t.Chdir(t.TempDir())
+
+	var stdout bytes.Buffer
+	var stderr bytes.Buffer
+
+	err := Run([]string{"init"}, &stdout, &stderr)
+	if err != nil {
+		t.Fatalf("Run returned error: %v", err)
+	}
+
+	for _, path := range []string{
+		".specforge/workspace.html",
+		".specforge/proposals",
+		".specforge/tasks",
+		".specforge/repos",
+		".specforge/assets/specforge.css",
+		".specforge/templates",
+	} {
+		if _, err := os.Stat(filepath.FromSlash(path)); err != nil {
+			t.Fatalf("expected %s to exist: %v", path, err)
+		}
+	}
+
+	if !strings.Contains(stdout.String(), "initialized .specforge workspace") {
+		t.Fatalf("stdout = %q, want init message", stdout.String())
 	}
 
 	if stderr.Len() != 0 {
