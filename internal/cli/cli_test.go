@@ -80,6 +80,65 @@ func TestRunInit(t *testing.T) {
 	}
 }
 
+func TestRunRepoAdd(t *testing.T) {
+	root := t.TempDir()
+	chdir(t, root)
+
+	if err := os.Mkdir("backend-api", 0o755); err != nil {
+		t.Fatalf("create repo path: %v", err)
+	}
+
+	var stdout bytes.Buffer
+	var stderr bytes.Buffer
+
+	if err := Run([]string{"init"}, &stdout, &stderr); err != nil {
+		t.Fatalf("Run init returned error: %v", err)
+	}
+
+	stdout.Reset()
+	stderr.Reset()
+
+	err := Run([]string{"repo", "add", "backend-api", "backend-api", "--type", "backend"}, &stdout, &stderr)
+	if err != nil {
+		t.Fatalf("Run repo add returned error: %v", err)
+	}
+
+	if !strings.Contains(stdout.String(), "registered repo backend-api") {
+		t.Fatalf("stdout = %q, want repo add message", stdout.String())
+	}
+
+	if stderr.Len() != 0 {
+		t.Fatalf("stderr = %q, want empty", stderr.String())
+	}
+
+	workspaceHTML, err := os.ReadFile(filepath.Join(root, ".specforge", "workspace.html"))
+	if err != nil {
+		t.Fatalf("read workspace.html: %v", err)
+	}
+
+	if !strings.Contains(string(workspaceHTML), `<sf-repository id="backend-api" path="backend-api" type="backend"></sf-repository>`) {
+		t.Fatalf("workspace.html = %q, want registered repo", string(workspaceHTML))
+	}
+}
+
+func TestRunRepoAddUsageError(t *testing.T) {
+	var stdout bytes.Buffer
+	var stderr bytes.Buffer
+
+	err := Run([]string{"repo", "add", "backend-api"}, &stdout, &stderr)
+	if err == nil {
+		t.Fatal("Run returned nil error, want usage error")
+	}
+
+	if stdout.Len() != 0 {
+		t.Fatalf("stdout = %q, want empty", stdout.String())
+	}
+
+	if !strings.Contains(stderr.String(), "usage: specforge repo add") {
+		t.Fatalf("stderr = %q, want usage message", stderr.String())
+	}
+}
+
 func chdir(t *testing.T, dir string) {
 	t.Helper()
 

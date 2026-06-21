@@ -90,6 +90,82 @@ func TestInitForceOverwritesGeneratedFiles(t *testing.T) {
 	}
 }
 
+func TestAddRepositoryRegistersRepoInWorkspace(t *testing.T) {
+	root := t.TempDir()
+	repoPath := filepath.Join(root, "backend-api")
+	if err := os.Mkdir(repoPath, 0o755); err != nil {
+		t.Fatalf("create repo path: %v", err)
+	}
+
+	if err := Init(root, InitOptions{}); err != nil {
+		t.Fatalf("Init returned error: %v", err)
+	}
+
+	if err := AddRepository(root, RepositoryOptions{ID: "backend-api", Path: "backend-api", Type: "backend"}); err != nil {
+		t.Fatalf("AddRepository returned error: %v", err)
+	}
+
+	workspaceHTML := readFile(t, filepath.Join(root, ".specforge", "workspace.html"))
+	for _, expected := range []string{
+		`<sf-repository id="backend-api" path="backend-api" type="backend"></sf-repository>`,
+		`<sf-repositories>`,
+		`</sf-repositories>`,
+	} {
+		if !strings.Contains(workspaceHTML, expected) {
+			t.Fatalf("workspace.html does not contain %q", expected)
+		}
+	}
+}
+
+func TestAddRepositoryRejectsInvalidPath(t *testing.T) {
+	root := t.TempDir()
+	if err := Init(root, InitOptions{}); err != nil {
+		t.Fatalf("Init returned error: %v", err)
+	}
+
+	err := AddRepository(root, RepositoryOptions{ID: "backend-api", Path: "missing", Type: "backend"})
+	if err == nil || !strings.Contains(err.Error(), "repo path does not exist") {
+		t.Fatalf("AddRepository error = %v, want missing path error", err)
+	}
+}
+
+func TestAddRepositoryRejectsDuplicateID(t *testing.T) {
+	root := t.TempDir()
+	if err := os.Mkdir(filepath.Join(root, "backend-api"), 0o755); err != nil {
+		t.Fatalf("create repo path: %v", err)
+	}
+
+	if err := Init(root, InitOptions{}); err != nil {
+		t.Fatalf("Init returned error: %v", err)
+	}
+
+	options := RepositoryOptions{ID: "backend-api", Path: "backend-api", Type: "backend"}
+	if err := AddRepository(root, options); err != nil {
+		t.Fatalf("AddRepository returned error: %v", err)
+	}
+
+	err := AddRepository(root, options)
+	if err == nil || !strings.Contains(err.Error(), "duplicate repo id") {
+		t.Fatalf("AddRepository error = %v, want duplicate error", err)
+	}
+}
+
+func TestAddRepositoryRejectsUnsupportedType(t *testing.T) {
+	root := t.TempDir()
+	if err := os.Mkdir(filepath.Join(root, "backend-api"), 0o755); err != nil {
+		t.Fatalf("create repo path: %v", err)
+	}
+
+	if err := Init(root, InitOptions{}); err != nil {
+		t.Fatalf("Init returned error: %v", err)
+	}
+
+	err := AddRepository(root, RepositoryOptions{ID: "backend-api", Path: "backend-api", Type: "service"})
+	if err == nil || !strings.Contains(err.Error(), "unsupported repo type") {
+		t.Fatalf("AddRepository error = %v, want unsupported type error", err)
+	}
+}
+
 func readFile(t *testing.T, path string) string {
 	t.Helper()
 
