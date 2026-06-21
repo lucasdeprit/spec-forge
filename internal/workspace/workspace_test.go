@@ -5,6 +5,8 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+
+	"github.com/lucasdeprit/spec-forge/assets"
 )
 
 func TestInitCreatesExpectedStructure(t *testing.T) {
@@ -28,10 +30,21 @@ func TestInitCreatesExpectedStructure(t *testing.T) {
 	}
 
 	workspaceHTML := readFile(t, filepath.Join(root, ".specforge", "workspace.html"))
+	defaultWorkspaceHTML := readEmbeddedFile(t, "workspace.html")
+	if workspaceHTML != defaultWorkspaceHTML {
+		t.Fatalf("workspace.html does not match embedded source")
+	}
+
 	for _, expected := range []string{"<!doctype html>", "<sf-workspace>", "assets/specforge.css"} {
 		if !strings.Contains(workspaceHTML, expected) {
 			t.Fatalf("workspace.html does not contain %q", expected)
 		}
+	}
+
+	css := readFile(t, filepath.Join(root, ".specforge", "assets", "specforge.css"))
+	defaultCSS := readEmbeddedFile(t, "specforge.css")
+	if css != defaultCSS {
+		t.Fatalf("specforge.css does not match embedded source")
 	}
 }
 
@@ -83,6 +96,17 @@ func readFile(t *testing.T, path string) string {
 	content, err := os.ReadFile(path)
 	if err != nil {
 		t.Fatalf("read %s: %v", path, err)
+	}
+
+	return string(content)
+}
+
+func readEmbeddedFile(t *testing.T, path string) string {
+	t.Helper()
+
+	content, err := assets.Files.ReadFile(path)
+	if err != nil {
+		t.Fatalf("read embedded %s: %v", path, err)
 	}
 
 	return string(content)
