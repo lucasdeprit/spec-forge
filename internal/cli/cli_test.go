@@ -48,7 +48,7 @@ func TestRunHelp(t *testing.T) {
 }
 
 func TestRunInit(t *testing.T) {
-	t.Chdir(t.TempDir())
+	chdir(t, t.TempDir())
 
 	var stdout bytes.Buffer
 	var stderr bytes.Buffer
@@ -78,6 +78,25 @@ func TestRunInit(t *testing.T) {
 	if stderr.Len() != 0 {
 		t.Fatalf("stderr = %q, want empty", stderr.String())
 	}
+}
+
+func chdir(t *testing.T, dir string) {
+	t.Helper()
+
+	previous, err := os.Getwd()
+	if err != nil {
+		t.Fatalf("get working directory: %v", err)
+	}
+
+	if err := os.Chdir(dir); err != nil {
+		t.Fatalf("change working directory: %v", err)
+	}
+
+	t.Cleanup(func() {
+		if err := os.Chdir(previous); err != nil {
+			t.Fatalf("restore working directory: %v", err)
+		}
+	})
 }
 
 func TestRunUnknownCommand(t *testing.T) {
