@@ -40,6 +40,7 @@ body {
 /* Display */
 
 sf-codebase-map,
+sf-workspace,
 sf-proposal,
 sf-task,
 sf-implementation,
@@ -67,6 +68,10 @@ sf-path,
 sf-files,
 sf-domains,
 sf-domain,
+sf-repositories,
+sf-repository,
+sf-proposals,
+sf-tasks,
 sf-domain-dependencies,
 sf-dependency,
 sf-title,
